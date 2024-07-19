@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://3fbdiwbtj6r3"]
+[gd_scene load_steps=3 format=3 uid="uid://3fbdiwbtj6r3"]
 
 [ext_resource type="PackedScene" uid="uid://bp4odaprdkfws" path="res://scenes/room.tscn" id="1_syxri"]
+[ext_resource type="PackedScene" uid="uid://cftag6oabvbuv" path="res://scenes/clickeable_object.tscn" id="2_aclon"]
 
 [node name="Game" type="Node3D"]
 
 [node name="Room" parent="." instance=ExtResource("1_syxri")]
+
+[node name="ClickeableObject" parent="." instance=ExtResource("2_aclon")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1, -0.75)

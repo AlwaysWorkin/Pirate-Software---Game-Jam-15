@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cftag6oabvbuv"]
+
+[ext_resource type="Texture2D" uid="uid://b5aeb3kw8vvse" path="res://assets/images.png" id="1_3rm6n"]
+
+[sub_resource type="GDScript" id="GDScript_auyqn"]
+script/source = "extends Sprite3D
+
+func _on_area_3d_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true:
+			print(\"clicked guy\")
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bkujr"]
+size = Vector3(2, 2, 1)
+
+[node name="ClickeableObject" type="Node3D"]
+
+[node name="icon" type="Sprite3D" parent="."]
+texture = ExtResource("1_3rm6n")
+script = SubResource("GDScript_auyqn")
+
+[node name="Area3D" type="Area3D" parent="icon"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="icon/Area3D"]
+shape = SubResource("BoxShape3D_bkujr")
+
+[connection signal="input_event" from="icon/Area3D" to="icon" method="_on_area_3d_input_event"]
