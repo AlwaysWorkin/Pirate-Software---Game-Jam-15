@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck8gevtnmvdsj"]
+
+[ext_resource type="Texture2D" uid="uid://bi2kjqafid4qn" path="res://assets/placeholder assets/Home-Windows.jpg" id="1_k55kk"]
+[ext_resource type="Texture2D" uid="uid://sr8xl0ibyl50" path="res://assets/placeholder assets/openedwindowshade.jpg" id="2_k35wl"]
+[ext_resource type="Texture2D" uid="uid://cgp35ddmcpay1" path="res://assets/placeholder assets/closedwindowshade.jpg" id="3_itt0n"]
+[ext_resource type="Script" path="res://scripts/2dwindowclick.gd" id="4_ssu1y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wknba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k35wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_itt0n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="2Dwindowscene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(579, -323)
+
+[node name="windowbackground" type="Sprite2D" parent="."]
+position = Vector2(579, -319.5)
+scale = Vector2(0.553711, 0.307129)
+texture = ExtResource("1_k55kk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="windowbackground"]
+position = Vector2(-274.511, -226.289)
+scale = Vector2(3.19072, 3.19072)
+sprite_frames = SubResource("SpriteFrames_wknba")
+frame_progress = 0.401944
+script = ExtResource("4_ssu1y")

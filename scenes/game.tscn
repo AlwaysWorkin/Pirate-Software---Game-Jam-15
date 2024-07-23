@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://3fbdiwbtj6r3"]
 
 [ext_resource type="PackedScene" uid="uid://bp4odaprdkfws" path="res://scenes/room.tscn" id="1_syxri"]
-[ext_resource type="PackedScene" uid="uid://cftag6oabvbuv" path="res://scenes/clickeable_object.tscn" id="2_aclon"]
+[ext_resource type="PackedScene" uid="uid://doc7akfu41liu" path="res://scenes/windowscene/clickable3Dwindow.tscn" id="2_f18xj"]
 
 [node name="Game" type="Node3D"]
 
 [node name="Room" parent="." instance=ExtResource("1_syxri")]
 
-[node name="ClickeableObject" parent="." instance=ExtResource("2_aclon")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1, -0.75)
+[node name="ClickableWindow" parent="Room" instance=ExtResource("2_f18xj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.955853, 0.735066, 0.192178)

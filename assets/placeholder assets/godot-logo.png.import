@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doja43fhjhmv3"
-path.s3tc="res://.godot/imported/228-40-3d-floral-wallpaper-01-color-solution-original-imag3pggpfjk5cse.webp-bfb3b463632792de97a34c6ec94b8288.s3tc.ctex"
+uid="uid://b5aeb3kw8vvse"
+path.s3tc="res://.godot/imported/godot-logo.png-5e2415f5bbd80f836b164e56cedcce90.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/228-40-3d-floral-wallpaper-01-color-solution-original-imag3pggpfjk5cse.webp"
-dest_files=["res://.godot/imported/228-40-3d-floral-wallpaper-01-color-solution-original-imag3pggpfjk5cse.webp-bfb3b463632792de97a34c6ec94b8288.s3tc.ctex"]
+source_file="res://assets/placeholder assets/godot-logo.png"
+dest_files=["res://.godot/imported/godot-logo.png-5e2415f5bbd80f836b164e56cedcce90.s3tc.ctex"]
 
 [params]
 

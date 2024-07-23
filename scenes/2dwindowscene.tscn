@@ -1,0 +1,154 @@
+[gd_scene load_steps=13 format=3 uid="uid://ck8gevtnmvdsj"]
+
+[ext_resource type="Script" path="res://scripts/2dwindowscene.gd" id="1_5aofu"]
+[ext_resource type="Texture2D" uid="uid://bi2kjqafid4qn" path="res://assets/placeholder assets/window-background.jpg" id="1_k55kk"]
+[ext_resource type="Texture2D" uid="uid://sr8xl0ibyl50" path="res://assets/placeholder assets/window-shade.jpg" id="2_k35wl"]
+[ext_resource type="Texture2D" uid="uid://cgp35ddmcpay1" path="res://assets/placeholder assets/window-shade-closed.jpg" id="3_itt0n"]
+[ext_resource type="Script" path="res://scripts/2dwindowclick.gd" id="4_ssu1y"]
+[ext_resource type="Texture2D" uid="uid://3ko65v1adpkf" path="res://assets/placeholder assets/window-vase.png" id="5_tqp55"]
+[ext_resource type="Script" path="res://scripts/vase.gd" id="6_tjoug"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wknba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k35wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_itt0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k35wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_itt0n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfij4"]
+size = Vector2(243.387, 404.098)
+
+[sub_resource type="Animation" id="Animation_cuxed"]
+resource_name = "breaking"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../broken_vase")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ooykd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kjrfs"]
+_data = {
+"RESET": SubResource("Animation_ooykd"),
+"breaking": SubResource("Animation_cuxed")
+}
+
+[node name="2Dwindowscene" type="Node2D"]
+script = ExtResource("1_5aofu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(579, -323)
+
+[node name="windowbackground" type="Sprite2D" parent="."]
+position = Vector2(579, -319.5)
+scale = Vector2(0.553711, 0.307129)
+texture = ExtResource("1_k55kk")
+
+[node name="windowshade" type="AnimatedSprite2D" parent="windowbackground"]
+position = Vector2(-274.511, -226.289)
+scale = Vector2(3.19072, 3.19072)
+sprite_frames = SubResource("SpriteFrames_wknba")
+frame = 1
+frame_progress = 0.994384
+script = ExtResource("4_ssu1y")
+
+[node name="Area2D" type="Area2D" parent="windowbackground/windowshade"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="windowbackground/windowshade/Area2D"]
+position = Vector2(0, -3.06134)
+shape = SubResource("RectangleShape2D_bfij4")
+
+[node name="OpenWindowSound" type="AudioStreamPlayer2D" parent="windowbackground/windowshade"]
+bus = &"SFX"
+
+[node name="CloseWindowSound" type="AudioStreamPlayer2D" parent="windowbackground/windowshade"]
+bus = &"SFX"
+
+[node name="vase" type="Sprite2D" parent="windowbackground"]
+position = Vector2(225.75, 112.331)
+scale = Vector2(0.115344, 0.207949)
+texture = ExtResource("5_tqp55")
+script = ExtResource("6_tjoug")
+
+[node name="FallingSound" type="AudioStreamPlayer2D" parent="windowbackground/vase"]
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="windowbackground/vase"]
+libraries = {
+"": SubResource("AnimationLibrary_kjrfs")
+}
+
+[node name="broken_vase" type="Sprite2D" parent="windowbackground"]
+position = Vector2(187.824, 669.1)
+scale = Vector2(0.12854, 0.263661)
+texture = ExtResource("5_tqp55")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="windowbackground/broken_vase"]
+libraries = {
+"": SubResource("AnimationLibrary_kjrfs")
+}
+
+[connection signal="mouse_entered" from="windowbackground/windowshade/Area2D" to="windowbackground/windowshade" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="windowbackground/windowshade/Area2D" to="windowbackground/windowshade" method="_on_area_2d_mouse_exited"]
