@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://b44kemexmtfyr"]
+
+[ext_resource type="Texture2D" uid="uid://bh7i3anpxw46" path="res://assets/placeholder assets/inventory-management.png" id="1_7q3xs"]
+[ext_resource type="Script" path="res://inventory/inv_ui_slot.gd" id="1_di3ae"]
+
+[node name="inv_UI_slot" type="Panel"]
+custom_minimum_size = Vector2(80, 80)
+offset_right = 74.0
+offset_bottom = 74.0
+script = ExtResource("1_di3ae")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("1_7q3xs")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
+position = Vector2(-15, 0)
+scale = Vector2(0.04, 0.04)
